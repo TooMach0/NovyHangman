@@ -37,6 +37,40 @@ namespace ConsoleApp
                 Console.WriteLine("      || ");
                 Console.WriteLine("========");
             }
+            else if (WrongLetter == 4)
+            {
+                Console.WriteLine("+=====+");
+                Console.WriteLine("O     || ");
+                Console.WriteLine("      || ");
+                Console.WriteLine("      || ");
+                Console.WriteLine("      || ");
+                Console.WriteLine("      || ");
+                Console.WriteLine("      || ");
+                Console.WriteLine("========");
+            }
+            
+            else if (WrongLetter == 5)
+            {
+                Console.WriteLine("+=======+");
+                Console.WriteLine(" O      || ");
+                Console.WriteLine("/|\\     || ");
+                Console.WriteLine("        || ");
+                Console.WriteLine("        || ");
+                Console.WriteLine("        || ");
+                Console.WriteLine("        || ");
+                Console.WriteLine("==========");
+            }
+            else if (WrongLetter == 6)
+            {
+                Console.WriteLine("+=======+");
+                Console.WriteLine(" O      || ");
+                Console.WriteLine("/|\\     || ");
+                Console.WriteLine(" |      || ");
+                Console.WriteLine("/ \\     || ");
+                Console.WriteLine("        || ");
+                Console.WriteLine("        || ");
+                Console.WriteLine("==========");
+            }
             return WrongLetter;
         }
 

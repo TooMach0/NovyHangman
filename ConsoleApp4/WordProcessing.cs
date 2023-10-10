@@ -25,40 +25,62 @@ namespace ConsoleApp
 
             do
             {
+                usedSameLetter:
+
                 char guessedLetter = GuessedLetter();
+
+                if (lettersAlreadyGuessed.Contains(guessedLetter))
+                {
+                    Console.WriteLine("\n You already used this letter, try again.");
+                    goto usedSameLetter;
+                }
 
                 lettersAlreadyGuessed += guessedLetter;
 
-
-
+               
                 for (int i = 0; i < wordToGuess.Length; i++)
                 {
                     if (wordToGuess[i] == guessedLetter)
                     {
                         stringBuilder[i] = guessedLetter;
                         countingRightGuesses++;
-                        Console.WriteLine(countingRightGuesses);
+                        
 
                     }
                     else if (!wordToGuess.Contains(guessedLetter))
                     {
                         countingWrongGuesses++;
                         Console.WriteLine("Times wrong:" + countingWrongGuesses);
-                        Console.WriteLine(StickFigure.Hangman(countingWrongGuesses));
+                        StickFigure.Hangman(countingWrongGuesses);
 
                         break;
-                        //este doplnit hangmana
+                        
                     }
 
                 }
-                Console.WriteLine("Guessing in progress: " + stringBuilder.ToString());
+                Console.WriteLine("\nGuessing in progress: " + stringBuilder.ToString());
 
-                Console.WriteLine($"Letters already guessed:" + LettersUsed(lettersAlreadyGuessed));
+                Console.WriteLine($"\nLetters already guessed:" + LettersUsed(lettersAlreadyGuessed));
 
 
             }
-            while (countingWrongGuesses != 5 || countingRightGuesses == stringBuilder.Length);
+            while (countingWrongGuesses < 6 && countingRightGuesses < stringBuilder.Length);
+
+            WinLossDetermination(countingWrongGuesses, countingRightGuesses, wordToGuess);
         }
+
+        public void WinLossDetermination(int countingWrongGuesses, int countingRightGuesses, string wordToGuess)
+        {
+            if (countingWrongGuesses == 6)
+            {
+                Console.WriteLine("I am sorry you will be hanged");
+            }
+            else if(countingRightGuesses == wordToGuess.Length )
+            {
+                Console.WriteLine("Congratulations, you will not be hanged, this time!!!");
+            }
+        }
+
 
         public string ReplaceWordWithAsterisks(string wordToGuess)
         {
@@ -87,15 +109,17 @@ namespace ConsoleApp
             string guessedLetter = string.Empty;
             do
             {
+                Console.Write("\nPlease, write letter you think is correct: ");
+
                 guessedLetter = Console.ReadLine();
 
-                if (guessedLetter.Length > 1)
+                if (guessedLetter.Length > 1 || guessedLetter.Length == 0)
                 {
-                    Console.WriteLine("Please, write only one letter for guessing. Anything bigger than one letter will not be accepted");
+                    Console.WriteLine("\nPlease, write only one letter for guessing. Anything bigger or lower than one letter will not be accepted");
                 }
 
 
-            } while (guessedLetter.Length > 1);
+            } while (guessedLetter.Length > 1 || guessedLetter.Length == 0) ;
 
             guessedLetter = new string(guessedLetter.ToLower());
 
